@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flex Panels 💪</title>
+  <title>Flex Panels</title>
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <style>
@@ -26,6 +28,7 @@
     .panels {
       min-height: 100vh;
       overflow: hidden;
+      display: flex;
     }
 
     .panel {
@@ -43,6 +46,11 @@
       font-size: 20px;
       background-size: cover;
       background-position: center;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
 
     .panel1 { background-image:url(https://source.unsplash.com/Oze6U2m1oYU/1500x1500); }
@@ -56,11 +64,21 @@
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    .panel > *:first-child {transform: translateY(-100%);}
+    .panel.open-active > *:first-child {transform: translateY(0);}
+    .panel > *:last-child {transform: translateY(100%);}
+    .panel.open-active > *:last-child {transform: translateY(0);}
 
     .panel p {
       text-transform: uppercase;
-      font-family: 'Amatic SC', cursive;
+      /* font-family: 'Amatic SC', cursive; */
+      font-family: 'Poppins', sans-serif;
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
       font-size: 2em;
     }
@@ -70,6 +88,7 @@
     }
 
     .panel.open {
+      flex: 5;
       font-size: 40px;
     }
 
@@ -78,34 +97,48 @@
 
   <div class="panels">
     <div class="panel panel1">
-      <p>Great</p>
       <p>Day</p>
-      <p>To You!!!</p>
+      <p>Great</p>
+      <p>Ahead</p>
     </div>
     <div class="panel panel2">
-      <p>Good Evening</p>
-      <p>And</p>
-      <p>Good Night</p>
+      <p>Another</p>
+      <p>Day</p>
+      <p>For you</p>
     </div>
     <div class="panel panel3">
-      <p>Good</p>
-      <p>Plesant</p>
-      <p>Morning</p>
+      <p>Lots</p>
+      <p>Of</p>
+      <p>Fun</p>
     </div>
     <div class="panel panel4">
       <p>And</p>
-      <p>the</p>
-      <p>Afternoon ...</p>
+      <p>Summer</p>
+      <p>Time</p>
     </div>
     <div class="panel panel5">
-      <p>Life</p>
-      <p>Is</p>
-      <p>Beautiful</p>
+      <p>Warm</p>
+      <p>Joy</p>
+      <p>For You</p>
     </div>
   </div>
 
   <script>
+    const panels = document.querySelectorAll('.panel');
 
+    function toggleOpen() {
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName);
+      if(e.propertyName.includes('flex')){
+        this.classList.toggle('open-active');
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
   </script>
 
 
