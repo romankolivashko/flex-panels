@@ -25,7 +25,7 @@
     </p> 
 </html>
 
-### Use of CSS Flex functionality to expand image panels on the screen
+### Use case of CSS Flex functionality to expand image panels on the screen
 
 #### By Roman Kolivashko
 
